@@ -5,7 +5,11 @@ class Changer
 
   def self.make_change(num)
     change = []
+
     while change.sum < num
+      if change.sum == num
+        return change.sort.reverse
+      end
       change << 25
       if change.sum > num
         change.pop
@@ -19,8 +23,11 @@ class Changer
         change.pop
       end
       change << 1
+      if change.sum > num
+        change.pop
+      end
     end
-    return change
+    return change.sort.reverse
   end
 
 end
