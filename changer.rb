@@ -1,61 +1,38 @@
 class Changer
 
-  def initialize
-    @change = []
-  end
+  def self.make_change(change)
+    coins = []
 
-  def self.make_change(num)
+    if change > 0
 
-    while change.sum < num
-      
-      if change.sum == num
-        return change.sort.reverse
+      num = change / 25
+      num.times do
+        coins << 25
+        change - 25
       end
 
-      @change.add_quarters
 
-      if change.sum > num
-        change.pop
+      num = change / 10
+      num.times do
+        coins << 10
+        change - 10
       end
 
-      @change.add_dimes
 
-      if change.sum > num
-        change.pop
+      num = change / 5
+      num.times do
+        coins << 5
+        change - 5
       end
 
-      @change.add_fives
 
-      if change.sum > num
-        change.pop
+      num = change / 1
+      num.times do
+        coins << 1
+        change - 1
       end
 
-      @change.add_pennies
-
-      if change.sum > num
-        change.pop
-      end
-
+      return coins.sort.reverse
     end
-
-    return change.sort.reverse
-
   end
-
-  def add_quarters
-    @change << 25
-  end
-
-  def add_dimes
-    @change << 10
-  end
-
-  def add_fives
-    @change << 5
-  end
-
-  def add_pennies
-    @change << 1
-  end
-
 end
